@@ -30,7 +30,7 @@ Create a UML class diagram of the project. Because our projects are not large in
 ### Part 2: Java Implementation
 Packages, Interfaces and Classes
 * ADTPackage
-    * DictionaryInterface
+    * ADTPackage.DictionaryInterface
         * LinkedDictionary
     * ListInterface
         * ListWithIteratorInterface
