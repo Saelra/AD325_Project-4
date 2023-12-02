@@ -60,6 +60,10 @@ public class Profile {
         }
     }
     public String toString() {
-        return getName() + "\n Status: " + getStatus();
+        String status = "None";
+        if (getStatus() != null) {
+            status = getStatus();
+        }
+        return getName() + "\n Status: " + status;
     }
 }

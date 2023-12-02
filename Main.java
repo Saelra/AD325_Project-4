@@ -11,13 +11,13 @@ public class Main {
         System.out.print("Enter Last Name: " );
         name += " " + userInput.next();
         profileManager.addProfile(currentUser = new Profile(name));
+
         boolean login = true;
 
         while (true) {
             menu();
             int input = userInput.nextInt();
             if (input == 1) {
-
                 System.out.print("Enter Name: ");
                 name = userInput.next();
                 System.out.print("Enter Last Name: " );
@@ -28,9 +28,36 @@ public class Main {
                 currentUser.setStatus(status);
             } else if (input == 2) {
                 profileManager.displayAllProfiles();
+            } else if (input == 3) {
+                System.out.print("Enter Friend First Name: ");
+                name = userInput.next();
+                System.out.print("Enter Friend Last Name: ");
+                name += " " + userInput.next();
+                Profile friend = profileManager.getProfile(name);
+                if (friend == null) {
+                    System.out.println("Profile not found");
+                } else {
+                    profileManager.connectProfiles(currentUser, friend);
+                }
+            } else if (input == 4) {
+                profileManager.displayFriend(currentUser, currentUser);
+            } else if (input == 5) {
+                System.out.print("Enter Friend First Name: ");
+                name = userInput.next();
+                System.out.print("Enter Friend Last Name: ");
+                name += " " + userInput.next();
+                Profile friend = profileManager.getProfile(name);
+                profileManager.displayFriend(friend, friend);
+            } else if (input == 7) {
+                System.out.print("Enter First Name: ");
+                name = userInput.next();
+                System.out.print("Enter Last Name: ");
+                name += " " + userInput.next();
+                Profile newProfile = new Profile(name);
+                profileManager.addProfile(newProfile);
             } else if (input == 9) {
                 login = false;
-                break;
+                return;
             }
 
 
