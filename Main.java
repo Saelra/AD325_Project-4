@@ -6,8 +6,10 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter Name: ");
-        String name = userInput.nextLine();
+        System.out.print("Enter First Name: " );
+        String name = userInput.next();
+        System.out.print("Enter Last Name: " );
+        name += " " + userInput.next();
         profileManager.addProfile(currentUser = new Profile(name));
         boolean login = true;
 
@@ -15,11 +17,15 @@ public class Main {
             menu();
             int input = userInput.nextInt();
             if (input == 1) {
-                System.out.println("Enter Name: ");
-                currentUser.setName(userInput.nextLine());
-                System.out.println("Enter Status: ");
-                currentUser.setStatus(userInput.nextLine());
-                break;
+
+                System.out.print("Enter Name: ");
+                name = userInput.next();
+                System.out.print("Enter Last Name: " );
+                name += " " + userInput.next();
+                currentUser.setName(name);
+                System.out.print("Enter Status: ");
+                String status = userInput.next();
+                currentUser.setStatus(status);
             } else if (input == 2) {
                 profileManager.displayAllProfiles();
             } else if (input == 9) {
