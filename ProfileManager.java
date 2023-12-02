@@ -1,35 +1,38 @@
-import ADTPackage.StackInterface;
+import ADTPackage.*;
 import GraphPackage.*;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class ProfileManager {
     private UndirectedGraph<Profile> graph;
+    private ArrayList<Profile> profilesList;
 
     public ProfileManager() {
         graph = new UndirectedGraph<>();
+        profilesList = new ArrayList<>();
     }
     public void addProfile(Profile profile) {
         graph.addVertex(profile);
+        profilesList.add(profile);
     }
-    public void connectProfiles(Profile profile1, Profile profile2) {
-        graph.addEdge(profile1, profile2);
+    public void connectProfiles(Profile current, Profile friend) {
+        graph.addEdge(current, friend);
+        current.addFriends(friend);
     }
-//    public void displayAllProfiles(Stack<Profile> profiles) {
-//        System.out.println("All Profiles:");
-//        while (!profiles.isEmpty()) {
-//            System.out.println(profiles.pop());
-//        }
-//    }
+
     public void displayAllProfiles() {
-        StackInterface<Profile> profiles = graph.getTopologicalOrder();
-        System.out.println("All Profiles:");
-        while (!profiles.isEmpty()) {
-            System.out.println(profiles.pop());
+        Profile[] profiles = profilesList.toArray(new Profile[0]);
+        for (Profile profile : profiles) {
+            System.out.println(profile);
         }
     }
 
-        public void displayFriend(Profile current) {
-        graph.getBreadthFirstTraversal(current);
+    public void displayFriend(Profile current) {
+        QueueInterface<Profile> friend = graph.getBreadthFirstTraversal(current);
+        while (!friend.isEmpty()) {
+            System.out.println(friend.dequeue().toString());
+        }
     }
 }

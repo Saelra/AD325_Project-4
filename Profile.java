@@ -59,4 +59,7 @@ public class Profile {
             }
         }
     }
+    public String toString() {
+        return getName() + "\n Status: " + getStatus();
+    }
 }
