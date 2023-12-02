@@ -25,11 +25,11 @@ public class ProfileManager {
     }
 
     public Profile getProfile(String profile) {
-        if (profilesList.containsKey(profile)) {
-            return profilesList.get(profile);
-        } else {
-            return null;
-        }
+        return profilesList.getOrDefault(profile, null);
+    }
+    public void removeProfile(String profile) {
+        profilesList.remove(profile);
+        graph.clear();
     }
 
     public void displayAllProfiles() {
@@ -41,10 +41,20 @@ public class ProfileManager {
     public void displayFriend(Profile current, Profile friends) {
         QueueInterface<Profile> friend = graph.getBreadthFirstTraversal(friends);
         while (!friend.isEmpty()) {
-            String f = friend.dequeue().toString();
-            if (!f.equals(current.toString())) {
-                System.out.println(f);
+            String profile = friend.dequeue().toString();
+            if (!profile.equals(current.toString())) {
+                System.out.println(profile);
             }
         }
     }
+    public void displayFriendOfFriend(Profile current, Profile friends) {
+        QueueInterface<Profile> friend = graph.getDepthFirstTraversal(friends);
+        while (!friend.isEmpty()) {
+            String profile = friend.dequeue().toString();
+            if (!profile.equals(current.toString())) {
+                System.out.println(profile);
+            }
+        }
+    }
+
 }

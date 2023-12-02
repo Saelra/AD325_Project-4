@@ -15,7 +15,7 @@ public class Profile {
     public Profile(String name, String status) {
         this.name = name;
         this.status = status;
-
+        this.friendsList = new ArrayList<>();
     }
 
     public String getName() {
@@ -35,7 +35,7 @@ public class Profile {
     }
 
 
-    public List<Profile> getFriendsList() {
+    public List<Profile>  getFriendsList() {
         return friendsList;
     }
 
@@ -44,18 +44,17 @@ public class Profile {
     }
 
     public void printProfile() {
+        System.out.println("Current Profile");
         System.out.println("Name: " + name);
-        System.out.println("Status: " + status);
+        System.out.println("    Status: " + status);
 
-        System.out.println("Friends:");
+        System.out.println("My Friends:");
 
         if (friendsList.isEmpty()) {
-            System.out.println("No friends yet.");
+            System.out.println("    No friends yet.");
         } else {
             for (Profile friend : friendsList) {
-                System.out.println("Name: " + friend.getName());
-                System.out.println("Status: " + getStatus());
-                System.out.println();
+                System.out.println("    Name: " + friend.getName() + " Status: " + friend.getStatus());
             }
         }
     }
@@ -64,6 +63,6 @@ public class Profile {
         if (getStatus() != null) {
             status = getStatus();
         }
-        return getName() + "\n Status: " + status;
+        return "    " + getName() + "    Status: " + status;
     }
 }
