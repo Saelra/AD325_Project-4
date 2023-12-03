@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     private static ProfileManager profileManager = new ProfileManager();
+    private static Profile newProfile;
     private static Profile currentUser;
 
     public static void main(String[] args) {
@@ -14,8 +15,8 @@ public class Main {
         name += " " + userInput.next();
         System.out.print("Enter Status: ");
         String status = userInput.next();
-        profileManager.addProfile(currentUser = new Profile(name, status));
-
+        profileManager.addProfile(newProfile = new Profile(name, status));
+        currentUser = newProfile;
 
         //create a switch for menu actions
         int option = -1;
