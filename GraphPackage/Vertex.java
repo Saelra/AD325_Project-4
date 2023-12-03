@@ -23,52 +23,61 @@ class Vertex<T> implements VertexInterface<T>
         cost = 0;
     } // end constructor
 
-    // Ex 8 from here to ....
+    /**{@inheritDoc}*/
     public T getLabel()
     {
         return label;
     } // end getLabel
 
+    //**{@inheritDoc}*/
     public boolean hasPredecessor()
     {
         return previousVertex != null;
     } // end hasPredecessor
 
+    /**{@inheritDoc}*/
     public void setPredecessor(VertexInterface<T> predecessor)
     {
         previousVertex = predecessor;
     } // end setPredecessor
 
+    /**{@inheritDoc}*/
     public VertexInterface<T> getPredecessor()
     {
         return previousVertex;
     } // end getPredecessor
 
+    /**{@inheritDoc}*/
     public void visit()
     {
         visited = true;
     } // end visit
 
+    /**{@inheritDoc}*/
     public void unvisit()
     {
         visited = false;
     } // end unvisit
 
+    /**{@inheritDoc}*/
     public boolean isVisited()
     {
         return visited;
     } // end isVisited
 
+    /**{@inheritDoc}*/
     public double getCost()
     {
         return cost;
     } // end getCost
 
+    /**{@inheritDoc}*/
     public void setCost(double newCost)
     {
         cost = newCost;
     } // end setCost
 
+    //TODO add javadoc
     public String toString()
     {
         return label.toString();
@@ -78,16 +87,19 @@ class Vertex<T> implements VertexInterface<T>
     {
         private Iterator<Edge> edges;
 
+        //TODO add javadoc
         private WeightIterator()
         {
             edges = edgeList.getIterator();
         } // end default constructor
 
+        /**{@inheritDoc}*/
         public boolean hasNext()
         {
             return edges.hasNext();
         } // end hasNext
 
+        /**{@inheritDoc}*/
         public Double next()
         {
             Double edgeWeight = 0.0;
@@ -102,18 +114,21 @@ class Vertex<T> implements VertexInterface<T>
             return edgeWeight;
         } // end next
 
+        /**{@inheritDoc}*/
         public void remove()
         {
             throw new UnsupportedOperationException();
         } // end remove
     } // end WeightIterator
 
+    /**{@inheritDoc}*/
     public Iterator<Double> getWeightIterator()
     {
         return new WeightIterator();
     } // end getWeightIterator
 // . . . to here Ex 8
 
+    /**{@inheritDoc}*/
     public boolean connect(VertexInterface<T> endVertex, double edgeWeight)
     {
         boolean result = false;
@@ -140,21 +155,25 @@ class Vertex<T> implements VertexInterface<T>
         return result;
     } // end connect
 
+    /**{@inheritDoc}*/
     public boolean connect(VertexInterface<T> endVertex)
     {
         return connect(endVertex, 0);
     } // end connect
 
+    /**{@inheritDoc}*/
     public Iterator<VertexInterface<T>> getNeighborIterator()
     {
         return new NeighborIterator();
     } // end getNeighborIterator
 
+    /**{@inheritDoc}*/
     public boolean hasNeighbor()
     {
         return !edgeList.isEmpty();
     } // end hasNeighbor
 
+    /**{@inheritDoc}*/
     public VertexInterface<T> getUnvisitedNeighbor()
     {
         VertexInterface<T> result = null;
@@ -170,6 +189,7 @@ class Vertex<T> implements VertexInterface<T>
         return result;
     } // end getUnvisitedNeighbor
 
+    //TODO add javadoc
     public boolean equals(Object other)
     {
         boolean result;
@@ -191,16 +211,19 @@ class Vertex<T> implements VertexInterface<T>
     {
         private Iterator<Edge> edges;
 
+        //TODO add javadoc
         private NeighborIterator()
         {
             edges = edgeList.getIterator();
         } // end default constructor
 
+        /**{@inheritDoc}*/
         public boolean hasNext()
         {
             return edges.hasNext();
         } // end hasNext
 
+        /**{@inheritDoc}*/
         public VertexInterface<T> next()
         {
             VertexInterface<T> nextNeighbor = null;
@@ -216,12 +239,14 @@ class Vertex<T> implements VertexInterface<T>
             return nextNeighbor;
         } // end next
 
+        /**{@inheritDoc}*/
         public void remove()
         {
             throw new UnsupportedOperationException();
         } // end remove
     } // end NeighborIterator
 
+    //TODO add javadocs throughout Edge
     protected class Edge
     {
         private VertexInterface<T> vertex; // Vertex at end of edge
@@ -250,6 +275,7 @@ class Vertex<T> implements VertexInterface<T>
         } // end getWeight
     } // end Edge
 
+    //TODO add javadoc
     public void display() // For testing
     {
         System.out.print(label + " " );

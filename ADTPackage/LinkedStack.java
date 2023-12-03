@@ -2,7 +2,7 @@ package ADTPackage;
 import java.util.EmptyStackException;
 /**
    A class of stacks whose entries are stored in a chain of nodes.
-   
+
    @author Frank M. Carrano
    @author Timothy M. Henry
    @version 5.0
@@ -10,12 +10,13 @@ import java.util.EmptyStackException;
 public final class LinkedStack<T> implements StackInterface<T>
 {
 	private Node topNode; // References the first node in the chain
-	
+
 	public LinkedStack()
 	{
 		topNode = null;
 	} // end default constructor
-	
+
+	/**{@inheritDoc}*/
 	public void push(T newEntry)
 	{
 		Node newNode = new Node(newEntry, topNode);
@@ -23,6 +24,7 @@ public final class LinkedStack<T> implements StackInterface<T>
 //    topNode = new Node(newEntry, topNode); // Alternate code
 	} // end push
 
+	/**{@inheritDoc}*/
 	public T peek()
 	{
 		if (isEmpty())
@@ -31,6 +33,7 @@ public final class LinkedStack<T> implements StackInterface<T>
          return topNode.getData();
 	} // end peek
 
+	/**{@inheritDoc}*/
 	public T pop()
 	{
 	   T top = peek();  // Might throw EmptyStackException
@@ -40,28 +43,13 @@ public final class LinkedStack<T> implements StackInterface<T>
 	   return top;
 	} // end pop
 
-/*
-// Question 1, Chapter 6: Does not call peek 
-	public T pop()
-	{
-      if (isEmpty())
-         throw new EmptyStackException();
-      else
-		{
-         assert (topNode != null);
-			top = topNode.getData();
-			topNode = topNode.getNextNode();
-		} // end if
-		
-		return top;
-	} // end pop
-*/		
-
+	/**{@inheritDoc}*/
 	public boolean isEmpty()
 	{
 		return topNode == null;
 	} // end isEmpty
-	
+
+	/**{@inheritDoc}*/
 	public void clear()
 	{
 		topNode = null;  // Causes deallocation of nodes in the chain
@@ -80,24 +68,28 @@ public final class LinkedStack<T> implements StackInterface<T>
       private Node(T dataPortion, Node linkPortion)
       {
          data = dataPortion;
-         next = linkPortion;	
+         next = linkPortion;
       } // end constructor
 
+	  //TODO add javadoc
       private T getData()
       {
          return data;
       } // end getData
 
+	  //TODO add javadoc
       private void setData(T newData)
       {
          data = newData;
       } // end setData
 
+	  //TODO add javadoc
       private Node getNextNode()
       {
          return next;
       } // end getNextNode
 
+	  //TODO add javadoc
       private void setNextNode(Node nextNode)
       {
          next = nextNode;

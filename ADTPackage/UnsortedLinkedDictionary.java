@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 /**
    A class that implements the ADT dictionary by using a chain of nodes.
    The dictionary is unsorted and has distinct search keys.
-  
+
    @author Frank M. Carrano
    @author Timothy M. Henry
    @version 5.0
@@ -12,13 +12,14 @@ import java.util.NoSuchElementException;
 public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 {
 	private Node firstNode;   // Reference to first node of chain
-	private int  numberOfEntries; 
-	
+	private int  numberOfEntries;
+
 	public UnsortedLinkedDictionary()
 	{
       initializeDataFields();
 	} // end default constructor
-	
+
+	/**{@inheritDoc}*/
    public V add(K key, V value)
    {
       if ((key == null) || (value == null))
@@ -48,28 +49,29 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
             result = currentNode.getValue();
             currentNode.setValue(value); // Replace value
          } // end if
-      
+
          return result;
       } // end if
    } // end add
 
+	/**{@inheritDoc}*/
    public V remove(K key)
 	{
    	V result = null;  // Return value
-   	
+
 		if (!isEmpty())
-		{	
+		{
          // Search chain for a node containing key;
          // save reference to preceding node
 			Node currentNode = firstNode;
 			Node nodeBefore = null;
-         
+
          while ( (currentNode != null) && !key.equals(currentNode.getKey()) )
 			{
 				nodeBefore = currentNode;
 				currentNode = currentNode.getNextNode();
 			} // end while
-			
+
 			if (currentNode != null)
 			{
 				// node found; remove it
@@ -84,10 +86,11 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 			  numberOfEntries--;                            // Decrease length for both cases
 			} // end if
 		} // end if
-			
-      return result;  
+
+      return result;
    } // end remove
 
+	/**{@inheritDoc}*/
    public V getValue(K key)
    {
       V result = null;
@@ -109,63 +112,71 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
       return result;
    } // end getValue
 
+	/**{@inheritDoc}*/
 	public boolean contains(K key)
    {
-   	return getValue(key) != null; 
+   	return getValue(key) != null;
    } // end contains
 
+	/**{@inheritDoc}*/
    public boolean isEmpty()
    {
       return numberOfEntries == 0;
    } // end isEmpty
-	
+
+	/**{@inheritDoc}*/
    public int getSize()
    {
       return numberOfEntries;
    } // end getSize
 
+	/**{@inheritDoc}*/
 	public final void clear()
-	{ 
+	{
       initializeDataFields();
    } // end clear
 
+	/**{@inheritDoc}*/
 	public Iterator<K> getKeyIterator()
 	{
 		return new KeyIterator();
 	} // end getKeyIterator
-	
+
+	/**{@inheritDoc}*/
 	public Iterator<V> getValueIterator()
 	{
 		return new ValueIterator();
 	} // end getValueIterator
 
-   // Initializes the class's data fields to indicate an empty list.
+   //TODO add javadoc; Initializes the class's data fields to indicate an empty list.
    private void initializeDataFields()
    {
 		firstNode = null;
 		numberOfEntries = 0;
    } // end initializeDataFields
-	
+
 // Same as in SortedLinkedDictionary.
 // Since iterators implement Iterator, methods must be public.
 	private class KeyIterator implements Iterator<K>
 	{
 		private Node nextNode;
-		
+
 		private KeyIterator()
 		{
 			nextNode = firstNode;
 		} // end default constructor
-		
-		public boolean hasNext() 
+
+		/**{@inheritDoc}*/
+		public boolean hasNext()
 		{
 			return nextNode != null;
 		} // end hasNext
-		
+
+		/**{@inheritDoc}*/
 		public K next()
 		{
 			K result;
-			
+
 			if (hasNext())
 			{
 				result = nextNode.getKey();
@@ -175,34 +186,37 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 			{
 				throw new NoSuchElementException();
 			} // end if
-		
+
 			return result;
 		} // end next
-		
+
+		/**{@inheritDoc}*/
 		public void remove()
 		{
 			throw new UnsupportedOperationException();
 		} // end remove
-	} // end KeyIterator 
-	
+	} // end KeyIterator
+
 	private class ValueIterator implements Iterator<V>
 	{
 		private Node nextNode;
-		
+
 		private ValueIterator()
 		{
 			nextNode = firstNode;
 		} // end default constructor
-		
-		public boolean hasNext() 
+
+		/**{@inheritDoc}*/
+		public boolean hasNext()
 		{
 			return nextNode != null;
 		} // end hasNext
-		
+
+		/**{@inheritDoc}*/
 		public V next()
 		{
 			V result;
-			
+
 			if (hasNext())
 			{
 				result = nextNode.getValue();
@@ -212,10 +226,11 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 			{
 				throw new NoSuchElementException();
 			} // end if
-		
+
 			return result;
 		} // end next
-		
+
+		/**{@inheritDoc}*/
 		public void remove()
 		{
 			throw new UnsupportedOperationException();
@@ -232,40 +247,45 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 		{
 			key = searchKey;
 			value = dataValue;
-			next = null;	
+			next = null;
 		} // end constructor
-		
+
 		private Node(K searchKey, V dataValue, Node nextNode)
 		{
 			key = searchKey;
 			value = dataValue;
-			next = nextNode;	
+			next = nextNode;
 		} // end constructor
-		
+
+		//TODO add javadoc
 		private K getKey()
 		{
 			return key;
 		} // end getKey
-		
+
+		//TODO add javadoc
 		private V getValue()
 		{
 			return value;
 		} // end getValue
 
+		//TODO add javadoc
 		private void setValue(V newValue)
 		{
 			value = newValue;
 		} // end setValue
 
+		//TODO add javadoc
 		private Node getNextNode()
 		{
 			return next;
 		} // end getNextNode
-		
+
+		//TODO add javadoc
 		private void setNextNode(Node nextNode)
 		{
 			next = nextNode;
 		} // end setNextNode
 	} // end Node
 } // end UnsortedLinkedDictionary
-		
+

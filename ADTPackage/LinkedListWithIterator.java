@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 /**
  A class that implements the ADT list by using a chain of linked nodes.
  The list has an iterator. The class is similar to LList.
- 
+
  @author Frank M. Carrano
  @author Timothy M. Henry
  @version 5.0
@@ -13,17 +13,19 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 {
    private Node firstNode;
    private int  numberOfEntries;;
-   
+
    public LinkedListWithIterator()
    {
       initializeDataFields();
    } // end default constructor
 
+    /**{@inheritDoc}*/
 	public void clear()
 	{
       initializeDataFields();
 	} // end clear
- 
+
+    /**{@inheritDoc}*/
 	public void add(T newEntry) 	               // OutOfMemoryError possible
 	{
 		Node newNode = new Node(newEntry);
@@ -34,17 +36,18 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 		{
 			Node lastNode = getNodeAt(numberOfEntries);
 			lastNode.setNextNode(newNode);         // Make last node reference new node
-		} // end if	
-		
+		} // end if
+
 		numberOfEntries++;
 	}  // end add
 
+    /**{@inheritDoc}*/
    public void add(int newPosition, T newEntry) // OutOfMemoryError possible
 	{
  		if ((newPosition >= 1) && (newPosition <= numberOfEntries + 1))
 		{
 			Node newNode = new Node(newEntry);
-         
+
 			if (newPosition == 1)                  // Case 1
 			{
 				newNode.setNextNode(firstNode);
@@ -57,21 +60,22 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 				newNode.setNextNode(nodeAfter);
 				nodeBefore.setNextNode(newNode);
 			} // end if
-         
+
 			numberOfEntries++;
 		}
       else
          throw new IndexOutOfBoundsException("Illegal position given to add operation.");
    } // end add
 
+    /**{@inheritDoc}*/
 	public T remove(int givenPosition)
 	{
       T result = null;                          // Return value
-      
+
       if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
       {
          // Assertion: !isEmpty()
-         
+
          if (givenPosition == 1)                // Case 1: remove first entry
          {
             result = firstNode.getData();       // Save entry to be removed
@@ -85,7 +89,7 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
             Node nodeAfter = nodeToRemove.getNextNode();
             nodeBefore.setNextNode(nodeAfter);
          } // end if
-         
+
          numberOfEntries--;                     // Update count
          return result;                         // Return removed entry
       }
@@ -93,12 +97,13 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
          throw new IndexOutOfBoundsException("Illegal position given to remove operation.");
 	} // end remove
 
+    /**{@inheritDoc}*/
 	public T replace(int givenPosition, T newEntry)
 	{
       if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
       {
       	// Assertion: !isEmpty()
-         
+
 			Node desiredNode = getNodeAt(givenPosition);
          T originalEntry = desiredNode.getData();
 			desiredNode.setData(newEntry);
@@ -107,7 +112,8 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 		else
          throw new IndexOutOfBoundsException("Illegal position given to replace operation.");
    } // end replace
-   
+
+    /**{@inheritDoc}*/
    public T getEntry(int givenPosition)
    {
 		if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
@@ -118,13 +124,14 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
       else
          throw new IndexOutOfBoundsException("Illegal position given to getEntry operation.");
    } // end getEntry
-   
+
+    /**{@inheritDoc}*/
    public T[] toArray()
    {
       // The cast is safe because the new array contains null entries
       @SuppressWarnings("unchecked")
       T[] result = (T[])new Object[numberOfEntries];
-      
+
       int index = 0;
       Node currentNode = firstNode;
       while ((index < numberOfEntries) && (currentNode != null))
@@ -133,15 +140,16 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
          currentNode = currentNode.getNextNode();
          index++;
       } // end while
-      
+
       return result;
    } // end toArray
 
+    /**{@inheritDoc}*/
 	public boolean contains(T anEntry)
 	{
 		boolean found = false;
 		Node currentNode = firstNode;
-		
+
 		while (!found && (currentNode != null))
 		{
 			if (anEntry.equals(currentNode.getData()))
@@ -149,15 +157,17 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 			else
 				currentNode = currentNode.getNextNode();
 		} // end while
-		
+
 		return found;
 	} // end contains
 
+    /**{@inheritDoc}*/
    public int getLength()
    {
       return numberOfEntries;
    } // end getLength
 
+    /**{@inheritDoc}*/
    public boolean isEmpty()
    {
       boolean result;
@@ -175,33 +185,33 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 
       return result;
    } // end isEmpty
-   
+
+    /**{@inheritDoc}*/
    public Iterator<T> iterator()
    {
       return new IteratorForLinkedList();
    } // end iterator
-   
+
+    /**{@inheritDoc}*/
    public Iterator<T> getIterator()
    {
       return iterator();
    } // end getIterator
-   
-   // Initializes the class's data fields to indicate an empty list.
+
+   //TODO add javadoc Initializes the class's data fields to indicate an empty list.
    private void initializeDataFields()
    {
       firstNode = null;
       numberOfEntries = 0;
    } // end initializeDataFields
-   
-   // Returns a reference to the node at a given position.
-   // Precondition: The chain is not empty;
-   //               1 <= givenPosition <= numberOfEntries.
+
+   //TODO add javadoc Returns a reference to the node at a given position.
    private Node getNodeAt(int givenPosition)
    {
       // Assertion: (firstNode != null) &&
       //            (1 <= givenPosition) && (givenPosition <= numberOfEntries)
       Node currentNode = firstNode;
-      
+
       // Traverse the chain to locate the desired node
       // (skipped if givenPosition is 1)
       for (int counter = 1; counter < givenPosition; counter++)
@@ -209,16 +219,17 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
       // Assertion: currentNode != null
       return currentNode;
    } // end getNodeAt
-   
+
    private class IteratorForLinkedList implements Iterator<T>
    {
       private Node nextNode;
-      
+
       private IteratorForLinkedList()
       {
          nextNode = firstNode;
       } // end default constructor
-      
+
+       /**{@inheritDoc}*/
       public T next()
       {
          T result;
@@ -233,50 +244,56 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
          return result; // Return next entry in iteration
       } // end next
 
+       /**{@inheritDoc}*/
       public boolean hasNext()
       {
          return nextNode != null;
       } // end hasNext
 
+       /**{@inheritDoc}*/
       public void remove()
       {
          throw new UnsupportedOperationException("remove() is not supported " +
                                                  "by this iterator");
       } // end remove
    } // end IteratorForLinkedList
-   
+
    private class Node
    {
       private T    data; // Entry in list
       private Node next; // Link to next node
-      
+
       private Node(T dataPortion)
       {
          data = dataPortion;
          next = null;
       } // end constructor
-      
+
       private Node(T dataPortion, Node nextNode)
       {
          data = dataPortion;
          next = nextNode;
       } // end constructor
-      
+
+       //TODO add javadoc
       private T getData()
       {
          return data;
       } // end getData
-      
+
+       //TODO add javadoc
       private void setData(T newData)
       {
          data = newData;
       } // end setData
-      
+
+       //TODO add javadoc
       private Node getNextNode()
       {
          return next;
       } // end getNextNode
-      
+
+       //TODO add javadoc
       private void setNextNode(Node nextNode)
       {
          next = nextNode;

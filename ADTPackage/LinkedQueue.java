@@ -2,7 +2,7 @@ package ADTPackage;
 /**
  A class that implements a queue of bojects by using
  a chain of linked nodes that has both head and tail references.
- 
+
  @author Frank M. Carrano
  @author Timothy M. Henry
  @version 5.0
@@ -11,25 +11,27 @@ public final class LinkedQueue<T> implements QueueInterface<T>
 {
    private Node firstNode; // References node at front of queue
    private Node lastNode;  // References node at back of queue
-   
+
    public LinkedQueue()
    {
       firstNode = null;
       lastNode = null;
    } // end default constructor
-	
+
+   /**{@inheritDoc}*/
    public void enqueue(T newEntry)
    {
       Node newNode = new Node(newEntry, null);
-      
+
       if (isEmpty())
          firstNode = newNode;
       else
          lastNode.setNextNode(newNode);
-      
+
       lastNode = newNode;
    } // end enqueue
 
+   /**{@inheritDoc}*/
    public T getFront()
    {
       if (isEmpty())
@@ -37,25 +39,28 @@ public final class LinkedQueue<T> implements QueueInterface<T>
       else
          return firstNode.getData();
    } // end getFront
-   
+
+   /**{@inheritDoc}*/
    public T dequeue()
    {
       T front = getFront();  // Might throw EmptyQueueException
                              // Assertion: firstNode != null
       firstNode.setData(null);
       firstNode = firstNode.getNextNode();
-      
+
       if (firstNode == null)
          lastNode = null;
-      
+
       return front;
    } // end dequeue
-		
+
+   /**{@inheritDoc}*/
    public boolean isEmpty()
    {
       return (firstNode == null) && (lastNode == null);
    } // end isEmpty
-   
+
+   /**{@inheritDoc}*/
    public void clear()
    {
       firstNode = null;
@@ -66,34 +71,38 @@ public final class LinkedQueue<T> implements QueueInterface<T>
    {
       private T    data; // Entry in queue
       private Node next; // Link to next node
-      
+
       private Node(T dataPortion)
       {
          data = dataPortion;
          next = null;
       } // end constructor
-      
+
       private Node(T dataPortion, Node linkPortion)
       {
          data = dataPortion;
          next = linkPortion;
       } // end constructor
-      
+
+      //TODO add javadoc
       private T getData()
       {
          return data;
       } // end getData
-      
+
+      //TODO add javadoc
       private void setData(T newData)
       {
          data = newData;
       } // end setData
-      
+
+      //TODO add javadoc
       private Node getNextNode()
       {
          return next;
       } // end getNextNode
-      
+
+      //TODO add javadoc
       private void setNextNode(Node nextNode)
       {
          next = nextNode;
