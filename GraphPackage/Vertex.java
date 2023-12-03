@@ -29,7 +29,7 @@ class Vertex<T> implements VertexInterface<T>
         return label;
     } // end getLabel
 
-    //**{@inheritDoc}*/
+    /**{@inheritDoc}*/
     public boolean hasPredecessor()
     {
         return previousVertex != null;
@@ -77,7 +77,10 @@ class Vertex<T> implements VertexInterface<T>
         cost = newCost;
     } // end setCost
 
-    //TODO add javadoc
+    /**
+     * Textual representation of the vertex's label.
+     * @return the vertex's label.
+     */
     public String toString()
     {
         return label.toString();
@@ -87,7 +90,6 @@ class Vertex<T> implements VertexInterface<T>
     {
         private Iterator<Edge> edges;
 
-        //TODO add javadoc
         private WeightIterator()
         {
             edges = edgeList.getIterator();
@@ -189,7 +191,12 @@ class Vertex<T> implements VertexInterface<T>
         return result;
     } // end getUnvisitedNeighbor
 
-    //TODO add javadoc
+    /**
+     * Compares two objects: returns true if equal; false otherwise.
+     * @param other Object to be compared to.
+     * @return true if equal.
+     */
+    @Override
     public boolean equals(Object other)
     {
         boolean result;
@@ -211,7 +218,6 @@ class Vertex<T> implements VertexInterface<T>
     {
         private Iterator<Edge> edges;
 
-        //TODO add javadoc
         private NeighborIterator()
         {
             edges = edgeList.getIterator();
@@ -246,7 +252,6 @@ class Vertex<T> implements VertexInterface<T>
         } // end remove
     } // end NeighborIterator
 
-    //TODO add javadocs throughout Edge
     protected class Edge
     {
         private VertexInterface<T> vertex; // Vertex at end of edge
@@ -264,18 +269,28 @@ class Vertex<T> implements VertexInterface<T>
             weight = 0;
         } // end constructor
 
+        /**
+         * Retrieves the vertex representing the end of an edge.
+         * @return a vertex.
+         */
         protected VertexInterface<T> getEndVertex()
         {
             return vertex;
         } // end getEndVertex
 
+        /**
+         * Retrieves the weight of an edge.
+         * @return the edge weight.
+         */
         protected double getWeight()
         {
             return weight;
         } // end getWeight
     } // end Edge
 
-    //TODO add javadoc
+    /**
+     * Textual representation of all vertices and their edge weights.
+     */
     public void display() // For testing
     {
         System.out.print(label + " " );

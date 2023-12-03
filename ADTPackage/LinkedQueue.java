@@ -1,6 +1,6 @@
 package ADTPackage;
 /**
- A class that implements a queue of bojects by using
+ A class that implements a queue of objects by using
  a chain of linked nodes that has both head and tail references.
 
  @author Frank M. Carrano
@@ -84,25 +84,37 @@ public final class LinkedQueue<T> implements QueueInterface<T>
          next = linkPortion;
       } // end constructor
 
-      //TODO add javadoc
+      /**
+       * Gets the data from a given node.
+       * @return the node's data.
+       */
       private T getData()
       {
          return data;
       } // end getData
 
-      //TODO add javadoc
+      /**
+       * Assigns data for a given node.
+       * @param newData new data to set in a node.
+       */
       private void setData(T newData)
       {
          data = newData;
       } // end setData
 
-      //TODO add javadoc
+      /**
+       * Retrieves an adjacent node relative to the current node.
+       * @return the next node in the linked list.
+       */
       private Node getNextNode()
       {
          return next;
       } // end getNextNode
 
-      //TODO add javadoc
+      /**
+       * Assigns an adjacent node relative to the current node.
+       * @param nextNode the next node to be set in the linked list.
+       */
       private void setNextNode(Node nextNode)
       {
          next = nextNode;

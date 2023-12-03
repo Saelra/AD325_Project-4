@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
 {
    private Node firstNode;
-   private int  numberOfEntries;;
+   private int  numberOfEntries;
 
    public LinkedListWithIterator()
    {
@@ -198,14 +198,20 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
       return iterator();
    } // end getIterator
 
-   //TODO add javadoc Initializes the class's data fields to indicate an empty list.
+  /**
+   * Initializes the class's data fields to indicate an empty list.
+   */
    private void initializeDataFields()
    {
       firstNode = null;
       numberOfEntries = 0;
    } // end initializeDataFields
 
-   //TODO add javadoc Returns a reference to the node at a given position.
+    /**
+     * Returns a reference to the node at a given position.
+     * @param givenPosition a node's position within the linked list.
+     * @return the node at the given position.
+     */
    private Node getNodeAt(int givenPosition)
    {
       // Assertion: (firstNode != null) &&
@@ -275,25 +281,37 @@ public class LinkedListWithIterator<T> implements ListWithIteratorInterface<T>
          next = nextNode;
       } // end constructor
 
-       //TODO add javadoc
+       /**
+        * Gets the data from a given node.
+        * @return the node's data.
+        */
       private T getData()
       {
          return data;
       } // end getData
 
-       //TODO add javadoc
+       /**
+        * Assigns data for a given node.
+        * @param newData new data to set in a node.
+        */
       private void setData(T newData)
       {
          data = newData;
       } // end setData
 
-       //TODO add javadoc
+       /**
+        * Retrieves an adjacent node relative to the current node.
+        * @return the next node in the linked list.
+        */
       private Node getNextNode()
       {
          return next;
       } // end getNextNode
 
-       //TODO add javadoc
+       /**
+        * Assigns an adjacent node relative to the current node.
+        * @param nextNode the next node to be set in the linked list.
+        */
       private void setNextNode(Node nextNode)
       {
          next = nextNode;

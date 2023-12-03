@@ -148,8 +148,10 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 		return new ValueIterator();
 	} // end getValueIterator
 
-   //TODO add javadoc; Initializes the class's data fields to indicate an empty list.
-   private void initializeDataFields()
+	/**
+	 * Initializes the class's data fields to indicate an empty list.
+	 */
+	private void initializeDataFields()
    {
 		firstNode = null;
 		numberOfEntries = 0;
@@ -257,31 +259,46 @@ public class UnsortedLinkedDictionary<K, V> implements DictionaryInterface<K, V>
 			next = nextNode;
 		} // end constructor
 
-		//TODO add javadoc
+		/**
+		 * Gets the search key from a given node.
+		 * @return the node's key.
+		 */
 		private K getKey()
 		{
 			return key;
 		} // end getKey
 
-		//TODO add javadoc
+		/**
+		 * Gets the value from a given node.
+		 * @return the node's value.
+		 */
 		private V getValue()
 		{
 			return value;
 		} // end getValue
 
-		//TODO add javadoc
+		/**
+		 * Assigns a value to a given node.
+		 * @param newValue new value to set in a node.
+		 */
 		private void setValue(V newValue)
 		{
 			value = newValue;
 		} // end setValue
 
-		//TODO add javadoc
+		/**
+		 * Retrieves an adjacent node relative to the current node.
+		 * @return the next node in the linked dictionary.
+		 */
 		private Node getNextNode()
 		{
 			return next;
 		} // end getNextNode
 
-		//TODO add javadoc
+		/**
+		 * Assigns an adjacent node relative to the current node.
+		 * @param nextNode the next node to be set in the linked dictionary.
+		 */
 		private void setNextNode(Node nextNode)
 		{
 			next = nextNode;

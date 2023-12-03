@@ -86,7 +86,10 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return edgeCount;
     } // end getNumberOfEdges
 
-    //TODO add javadoc
+    /**
+     * Resets all vertices in the graph. Marks them as 'unvisited',
+     * sets the cost to 0, and sets predecessor to null.
+     */
     protected void resetVertices()
     {
         Iterator<VertexInterface<T>> vertexIterator = vertices.getValueIterator();
@@ -289,7 +292,11 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return pathCost;
     } // end getCheapestPath
 
-    //TODO add javadoc
+    /**
+     * Method to find the terminal vertex -- an unvisited vertex that has
+     * no unvisited neighbors.
+     * @return returns the terminal vertex; null if none found.
+     */
     protected VertexInterface<T> findTerminal()
     {
         boolean found = false;
@@ -315,7 +322,10 @@ public class DirectedGraph<T> implements GraphInterface<T>
         return result;
     } // end findTerminal
 
-    //TODO add javadoc
+    /**
+     * Textual representation providing edge information about each vertex in
+     * the graph.
+     */
     public void displayEdges()
     {
         System.out.println("\nEdges exist from the first vertex in each line to the other vertices in the line.");

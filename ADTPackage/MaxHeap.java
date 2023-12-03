@@ -123,7 +123,12 @@ implements MaxHeapInterface<T>
 		lastIndex = 0;
 	} // end clear
 
-   //TODO add javadoc
+    /**
+     * Compares the value of the given root to its children and proceeds to
+     * reorganize orientation of nodes to maintain the structure of the
+     * max heap.
+     * @param rootIndex the tree's root node index within an array.
+     */
    private void reheap(int rootIndex)
    {
       boolean done = false;
@@ -154,7 +159,9 @@ implements MaxHeapInterface<T>
       heap[rootIndex] = orphan;
    } // end reheap
 
-	// TODO add javadoc -Doubles the capacity of the array heap if it is full.
+    /**
+     * Doubles the capacity of the array heap if it is full.
+     */
 	private void ensureCapacity()
 	{
       int numberOfEntries = lastIndex;
@@ -167,15 +174,20 @@ implements MaxHeapInterface<T>
       } // end if
    } // end ensureCapacity
 
-	//TODO add javadoc Throws an exception if this object is corrupt.
+    /**
+     * Throws an exception if this object is corrupt.
+     */
 	private void checkIntegrity()
 	{
 		if (!integrityOK)
 			throw new SecurityException ("MaxHeap object is corrupt.");
 	} // end checkIntegrity
 
-	// TODO add javadoc - Ensures that the client requests a capacity
-	// that is not too small or too large.
+    /**
+     * Ensures that the client requests a capacity
+     * that is not too small or too large.
+     * @param capacity capacity as identified by the client.
+     */
 	private void checkCapacity(int capacity)
 	{
 		if (capacity < DEFAULT_CAPACITY)
