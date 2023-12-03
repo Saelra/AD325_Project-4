@@ -8,9 +8,8 @@ import java.util.Map;
 
 
 public class ProfileManager {
-    private UndirectedGraph<Profile> graph;
-//    private ArrayList<Profile> profilesList;
     private final Map<String, Profile> profilesList;
+    private final UndirectedGraph<Profile> graph;
 
     public ProfileManager() {
         graph = new UndirectedGraph<>();
@@ -20,6 +19,7 @@ public class ProfileManager {
     /**
      * Adds a profile to the network (undirected graph), represented by a
      * new, unconnected vertex.
+     *
      * @param profile a vertex.
      */
     public void addProfile(Profile profile) {
@@ -30,8 +30,9 @@ public class ProfileManager {
     /**
      * Connects a friend to the current profile, represented by adding
      * an edge between vertices.
+     *
      * @param current the active vertex.
-     * @param friend the vertex to be connected.
+     * @param friend  the vertex to be connected.
      */
     public void connectProfiles(Profile current, Profile friend) {
         graph.addEdge(current, friend);
@@ -44,6 +45,7 @@ public class ProfileManager {
      * Retrieves a profile from the list of profiles represented by a hash map
      * where the key is the username, and the value is the profile associated
      * with it.
+     *
      * @param profile the search key.
      * @return the value (Profile) associated with the username; null if
      * no value.
@@ -56,6 +58,7 @@ public class ProfileManager {
      * Deletes a profile from the list of profiles represented by a hash map
      * where the key is the username, and the value is the profile associated
      * with it.
+     *
      * @param profile the search key.
      */
     public void removeProfile(String profile) {
@@ -68,7 +71,7 @@ public class ProfileManager {
     }
 
     /**
-     *Outputs the list of all profiles in the network to the console.
+     * Outputs the list of all profiles in the network to the console.
      */
     public void displayAllProfiles() {
         for (Map.Entry<String, Profile> profile : profilesList.entrySet()) {
@@ -76,6 +79,12 @@ public class ProfileManager {
         }
     }
 
+    /**
+     * Displays the friends of a give profile using a breadth-first traversal.
+     *
+     * @param current The current profile
+     * @param friends The profile of friends
+     */
     public void displayFriend(Profile current, Profile friends) {
         QueueInterface<Profile> friend = graph.getBreadthFirstTraversal(friends);
         while (!friend.isEmpty()) {
@@ -85,6 +94,13 @@ public class ProfileManager {
             }
         }
     }
+
+    /**
+     * Displays the friends of the friends of a given profile.
+     *
+     * @param current The current profile
+     * @param friends The profile of friend
+     */
     public void displayFriendOfFriend(Profile current, Profile friends) {
         QueueInterface<Profile> friend = new LinkedQueue<>();
         List<Profile> friendsList = friends.getFriendsList();
