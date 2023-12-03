@@ -19,7 +19,7 @@ public class Main {
 
         //create a switch for menu actions
         int option = -1;
-        while (option != 10) {
+        while (option != 9) {
 
             //prints profile with each return to menu
             System.out.println();
@@ -31,13 +31,12 @@ public class Main {
             System.out.println("1. Modify profile");
             System.out.println("2. View all profiles");
             System.out.println("3. Add a friend");
-            System.out.println("4. Unfriend a profile");
-            System.out.println("5. View your friend list");
-            System.out.println("6. View your friend's friend list");
-            System.out.println("7. Delete a profile");
-            System.out.println("8. Add another profile");
-            System.out.println("9. Switch user");
-            System.out.println("10. Logout\n");
+            System.out.println("4. View your friend list");
+            System.out.println("5. View your friend's friend list");
+            System.out.println("6. Delete a profile");
+            System.out.println("7. Add another profile");
+            System.out.println("8. Switch user");
+            System.out.println("9. Logout\n");
 
             System.out.println("Enter menu option: ");
             option = userInput.nextInt();
@@ -62,7 +61,7 @@ public class Main {
                     profileManager.displayAllProfiles();
                     break;
 
-                case 3: //TODO add friend adds to the active user only; switching to a friend's profile shows no friends
+                case 3: //add friend
                     System.out.println("-----------------Add a friend-----------------\n");
                     System.out.print("Enter Friend's First Name: ");
                     name = userInput.next();
@@ -77,22 +76,12 @@ public class Main {
                     }
                     break;
 
-                case 4: //TODO unfriend currently just disconnects entire friends list
-                    System.out.println("-------------Unfriend A Profile---------------\n");
-                    System.out.print("Enter First Name: ");
-                    name = userInput.next();
-                    System.out.print("Enter Last Name: ");
-                    name += " " + userInput.next();
-                    currentUser.removeFriend(profileManager.getProfile(name));
-                    System.out.println("\n------Profile successfully unfriended---------");
-                    break;
-
-                case 5: //friend list
+                case 4: //friend list
                     System.out.println("----------------Friend List------------------\n");
                     profileManager.displayFriend(currentUser, currentUser);
                     break;
 
-                case 6: //TODO view friends of specified friend
+                case 5: //TODO view friends of specified friend
                     System.out.println("------------Friend's Friend List--------------\n");
                     List<Profile> friends = currentUser.getFriendsList();
                     /*for (Profile friend : friends) {
@@ -101,28 +90,31 @@ public class Main {
                     }*/
                     break;
 
-                case 7: //TODO deleting a profile does not delete from friend list
+                case 6: //TODO deleting a profile does not delete from friend list
                     System.out.println("--------------Delete A Profile----------------\n");
                     System.out.print("Enter First Name: ");
                     name = userInput.next();
                     System.out.print("Enter Last Name: ");
                     name += " " + userInput.next();
+                    currentUser.removeFriends(profileManager.getProfile(name));
                     profileManager.removeProfile(name);
                     System.out.println("\n-------Profile successfully deleted---------");
                     break;
 
-                case 8: //TODO add profile does not ask for status
+                case 7: //add profile
                     System.out.println("-------------Add Another Profile--------------\n");
                     System.out.print("Enter First Name: ");
                     name = userInput.next();
                     System.out.print("Enter Last Name: ");
                     name += " " + userInput.next();
-                    Profile newProfile = new Profile(name);
+                    System.out.print("Enter Status: ");
+                    status = userInput.next();
+                    Profile newProfile = new Profile(name, status);
                     profileManager.addProfile(newProfile);
                     System.out.println("\n---------Profile successfully added-----------");
                     break;
 
-                case 9: //TODO can't switch back to original user profile; doesn't report not found
+                case 8: //TODO can't switch back to original user profile
                     System.out.println("-----------------Switch User------------------\n");
                     System.out.print("Enter First Name: ");
                     name = userInput.next();
@@ -131,11 +123,13 @@ public class Main {
                     Profile change = profileManager.getProfile(name);
                     if (change != null) {
                         currentUser = change;
+                    }else{
+                        System.out.println("\n-------------Profile not found---------------");
                     }
                     break;
 
                 default:
-                    if (option == 10) continue;
+                    if (option == 9) continue;
                     System.out.println("Please enter number 1 - 9: ");
                     break;
             }

@@ -33,7 +33,9 @@ public class ProfileManager {
      */
     public void connectProfiles(Profile current, Profile friend) {
         graph.addEdge(current, friend);
+        graph.addEdge(friend, current);
         current.addFriends(friend);
+        friend.addFriends(current);
     }
 
     /**

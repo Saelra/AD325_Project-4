@@ -65,9 +65,12 @@ public class Profile {
         friendsList.add(friend);
     }
 
-    public void removeFriend(Profile friend) {
+    /**
+     * Removes a friend from this user's list of friends, stored in an ArrayList.
+     * @param friend profile to be deleted from current user's list.
+     */
+    public void removeFriends(Profile friend) {
         friendsList.remove(friend);
-        //TODO remove edge
     }
 
     /**
