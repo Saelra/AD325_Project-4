@@ -91,15 +91,21 @@ public class Main {
                     }*/
                     break;
 
-                case 6: //TODO deleting a profile does not delete from friend list
+                case 6:
                     System.out.println("--------------Delete A Profile----------------\n");
                     System.out.print("Enter First Name: ");
                     name = userInput.next();
                     System.out.print("Enter Last Name: ");
                     name += " " + userInput.next();
-                    currentUser.removeFriends(profileManager.getProfile(name));
-                    profileManager.removeProfile(name);
-                    System.out.println("\n-------Profile successfully deleted---------");
+                    // check if the profile is in the database
+                    Profile deleting = profileManager.getProfile(name);
+                    if (deleting != null) {
+                        currentUser.removeFriends(deleting);
+                        profileManager.removeProfile(name);
+                        System.out.println("\n-------Profile successfully deleted---------");
+                    } else {
+                        System.out.println("\n----------Profile does not exist------------");
+                    }
                     break;
 
                 case 7: //add profile

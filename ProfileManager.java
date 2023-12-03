@@ -57,7 +57,12 @@ public class ProfileManager {
      * @param profile the search key.
      */
     public void removeProfile(String profile) {
-        profilesList.remove(profile);
+        Profile profileToRemove = profilesList.remove(profile);
+
+        // Remove the profile from all friend lists
+        for (Profile current : profilesList.values()) {
+            current.removeFriends(profileToRemove);
+        }
     }
 
     /**
@@ -87,5 +92,4 @@ public class ProfileManager {
             }
         }
     }
-
 }
