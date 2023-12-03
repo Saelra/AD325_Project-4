@@ -1,3 +1,9 @@
+/*
+Names: Niki & Cheryl, Team Red
+Date: 12/3/2023
+AD325 - Project 4: Social Media Network
+ */
+
 import ADTPackage.LinkedQueue;
 import ADTPackage.QueueInterface;
 import GraphPackage.UndirectedGraph;
@@ -62,6 +68,7 @@ public class ProfileManager {
      * @param profile the search key.
      */
     public void removeProfile(String profile) {
+        //Runtime: O(n), depends on number of profiles
         Profile profileToRemove = profilesList.remove(profile);
 
         // Remove the profile from all friend lists
@@ -86,6 +93,7 @@ public class ProfileManager {
      * @param friends The profile of friends
      */
     public void displayFriend(Profile current, Profile friends) {
+        //Runtime: O(n), depends on number of friends
         QueueInterface<Profile> friend = graph.getBreadthFirstTraversal(friends);
         while (!friend.isEmpty()) {
             String profile = friend.dequeue().toString();
@@ -102,6 +110,7 @@ public class ProfileManager {
      * @param friends The profile of friend
      */
     public void displayFriendOfFriend(Profile current, Profile friends) {
+        //Runtime: O(n), depends on number of friends
         QueueInterface<Profile> friend = new LinkedQueue<>();
         List<Profile> friendsList = friends.getFriendsList();
         for (Profile currentFriend : friendsList) {

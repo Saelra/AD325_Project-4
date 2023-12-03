@@ -1,3 +1,9 @@
+/*
+Names: Niki & Cheryl, Team Red
+Date: 12/3/2023
+AD325 - Project 4: Social Media Network
+ */
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -82,7 +88,7 @@ public class Main {
                     profileManager.displayFriend(currentUser, currentUser);
                     break;
 
-                case 5:
+                case 5: //friend's friend list
                     System.out.println("------------Friend's Friend List--------------\n");
                     List<Profile> friends = currentUser.getFriendsList();
                     for (Profile current : friends) {
@@ -91,7 +97,7 @@ public class Main {
                     }
                     break;
 
-                case 6:
+                case 6: //delete profile
                     System.out.println("--------------Delete A Profile----------------\n");
                     System.out.print("Enter First Name: ");
                     name = userInput.next();
@@ -121,7 +127,7 @@ public class Main {
                     System.out.println("\n---------Profile successfully added-----------");
                     break;
 
-                case 8: //TODO can't switch back to original user profile
+                case 8: //switch user
                     System.out.println("-----------------Switch User------------------\n");
                     System.out.print("Enter First Name: ");
                     name = userInput.next();

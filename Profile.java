@@ -1,3 +1,9 @@
+/*
+Names: Niki & Cheryl, Team Red
+Date: 12/3/2023
+AD325 - Project 4: Social Media Network
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +89,7 @@ public class Profile {
      *     -alternately-
      *     No friends yet
      */
-    public void printProfile() { //O(n)
+    public void printProfile() { //Runtime: O(n), depends on number of friends
 
         System.out.println("---------------Current Profile----------------");
         System.out.println("Name: " + name);
