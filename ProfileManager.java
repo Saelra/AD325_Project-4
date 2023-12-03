@@ -1,7 +1,9 @@
+import ADTPackage.LinkedQueue;
 import ADTPackage.QueueInterface;
 import GraphPackage.UndirectedGraph;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -84,11 +86,17 @@ public class ProfileManager {
         }
     }
     public void displayFriendOfFriend(Profile current, Profile friends) {
-        QueueInterface<Profile> friend = graph.getDepthFirstTraversal(friends);
+        QueueInterface<Profile> friend = new LinkedQueue<>();
+        List<Profile> friendsList = friends.getFriendsList();
+        for (Profile currentFriend : friendsList) {
+            friend.enqueue(currentFriend);
+        }
         while (!friend.isEmpty()) {
             String profile = friend.dequeue().toString();
             if (!profile.equals(current.toString())) {
-                System.out.println(profile);
+                if (!profile.equals(friends.toString())) {
+                    System.out.println(profile);
+                }
             }
         }
     }

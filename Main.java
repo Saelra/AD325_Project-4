@@ -82,13 +82,13 @@ public class Main {
                     profileManager.displayFriend(currentUser, currentUser);
                     break;
 
-                case 5: //TODO view friends of specified friend
+                case 5:
                     System.out.println("------------Friend's Friend List--------------\n");
                     List<Profile> friends = currentUser.getFriendsList();
-                    /*for (Profile friend : friends) {
-                        System.out.println(friend.getName());
-                        profileManager.displayFriendOfFriend(friend, friend);
-                    }*/
+                    for (Profile current : friends) {
+                        System.out.println(current.getName());
+                        profileManager.displayFriendOfFriend(currentUser, current);
+                    }
                     break;
 
                 case 6:
