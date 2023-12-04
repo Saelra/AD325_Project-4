@@ -76,10 +76,10 @@ public class Main {
                     name += " " + userInput.next();
                     Profile friend = profileManager.getProfile(name);
                     if (friend == null) {
-                        System.out.println("\n-------------Profile not found---------------");
+                        System.out.println("\n-------------"+name+" not found---------------");
                     } else {
                         profileManager.connectProfiles(currentUser, friend);
-                        System.out.println("\n-------Friend successfully added---------");
+                        System.out.println("\n-------"+name+" successfully added---------");
                     }
                     break;
 
@@ -89,7 +89,7 @@ public class Main {
                     break;
 
                 case 5: //friend's friend list
-                    System.out.println("------------Friend's Friend List--------------\n");
+                    System.out.println("------------"+name+"'s Friend List--------------\n");
                     List<Profile> friends = currentUser.getFriendsList();
                     for (Profile current : friends) {
                         System.out.println(current.getName());
@@ -108,9 +108,9 @@ public class Main {
                     if (deleting != null) {
                         currentUser.removeFriends(deleting);
                         profileManager.removeProfile(name);
-                        System.out.println("\n-------Profile successfully deleted---------");
+                        System.out.println("\n-------"+name+" successfully deleted---------");
                     } else {
-                        System.out.println("\n----------Profile does not exist------------");
+                        System.out.println("\n----------"+name+" does not exist------------");
                     }
                     break;
 
@@ -124,7 +124,7 @@ public class Main {
                     status = userInput.next();
                     Profile newProfile = new Profile(name, status);
                     profileManager.addProfile(newProfile);
-                    System.out.println("\n---------Profile successfully added-----------");
+                    System.out.println("\n---------"+name+" successfully added-----------");
                     break;
 
                 case 8: //switch user
@@ -137,7 +137,7 @@ public class Main {
                     if (change != null) {
                         currentUser = change;
                     }else{
-                        System.out.println("\n-------------Profile not found---------------");
+                        System.out.println("\n-------------"+name+" not found---------------");
                     }
                     break;
 
